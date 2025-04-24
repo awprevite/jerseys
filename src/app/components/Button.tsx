@@ -1,8 +1,16 @@
 'use client';
 
-export default function Button({ type, text, onClick }: { type?: string, text: string; onClick: () => void }) {
+import React from 'react';
+
+interface ButtonProps {
+  type: 'primary' | 'close';
+  text: React.ReactNode; // string or JSX
+  onClick: (() => void) | React.MouseEventHandler<HTMLButtonElement>;
+}
+
+export default function Button({ type, text, onClick }: ButtonProps) {
   return (
-    <button onClick={onClick} className={'button ' + type}>
+    <button onClick={onClick} className={`button ${type}`}>
       {text}
     </button>
   );

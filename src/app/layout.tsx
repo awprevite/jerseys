@@ -1,6 +1,7 @@
-import type { Metadata } from 'next';
+// app/layout.tsx
 import './globals.css';
-import Navbar from './components/Navbar';
+import { Metadata } from 'next';
+import RootLayoutClient from './RootLayoutClient';
 
 export const metadata: Metadata = {
   title: 'Jersey Collection',
@@ -9,14 +10,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );

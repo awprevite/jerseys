@@ -1,12 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import Button from './Button';
 
-export default function Navbar() {
+interface NavbarProps {
+  loggedIn: boolean;
+  onLoginClick: () => void;
+}
+
+export default function Navbar( {loggedIn, onLoginClick }: NavbarProps) {
   return (
     <nav className="navbar">
-      <h1>Jersey Collection</h1>
-      <Button type='primary' text='Log In' onClick={() => alert('Logging in...')} />
+      <div className='navbar-title'>Jersey Collection</div>
+      <Button type='primary' text={loggedIn ? 'Logout' : 'login'} onClick={() => onLoginClick()} />
     </nav>
   );
 }
