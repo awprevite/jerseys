@@ -1,0 +1,48 @@
+:root {
+  --background: white;
+  --foreground: black;
+  --neutral: gray;
+  --font-family: 'Arial', sans-serif;
+  --font-size: 16px;
+  --border-radius: 5px;
+  --red: red;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: black;
+    --foreground: white;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+.button {
+  background: var(--foreground);
+  color: var(--background);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size);
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+.primary {
+
+}
+.primary:hover {
+  background: var(--red);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--neutral);
+  color: var(--foreground);
+}
