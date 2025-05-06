@@ -10,7 +10,7 @@ interface FilterProps {
   onSelect: (option: string) => void;
 }
 
-export default function Filter({ label, options, onSelect }: FilterProps) {
+function Filter({ label, options, onSelect }: FilterProps) {
 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const toggleOption = (option: string) => {
@@ -34,4 +34,57 @@ export default function Filter({ label, options, onSelect }: FilterProps) {
       </div>
     </div>
   );
-} 
+}
+
+interface FilterItemsProps {
+  items: any[];
+  filterBy: {
+    [key: string]: string[];
+  };
+}
+
+function filterItems({ items, filterBy }: FilterItemsProps) {
+  return items.filter((item) => {
+    return Object.entries(filterBy).every(([key, values]) => {
+      if (values.includes('all') || values.length === 0) return true;
+      return values.includes(item[key]);
+    });
+  });
+}
+
+interface SetFilterItemsProps {
+  newFilter: string;
+  filterBy: {
+    [key: string]: string[];
+  };
+}
+
+function setFilterItems({ newFilter, filterBy }: SetFilterItemsProps) {
+
+  const updated = { ...filterBy };
+  const allFilters = ['All', 'Adidas', 'Reebok', 'Fanatics', '50', '52'];
+  let filterKey = '';
+  if ( newFilter === '50' || newFilter === '52') {
+    filterKey = 'size';
+  } else if ( newFilter === 'Adidas' || newFilter === 'Reebok' || newFilter === 'Fanatics') { 
+    filterKey = 'brand';
+  }
+
+  for (const filter of allFilters) {
+    if(newFilter === filter) {
+      if (updated[filterKey].includes(filter)) {
+        updated[filterKey] = updated[filterKey].filter((item) => item !== filter);
+        if (updated[filterKey].length === 0) {
+          updated[filterKey].push('all');
+        }
+      } else {
+        updated[filterKey].push(filter);
+        updated[filterKey] = updated[filterKey].filter((item) => item !== 'all');
+      }
+      return updated;
+    }
+  }
+  return updated;
+}
+
+export { Filter, filterItems, setFilterItems };

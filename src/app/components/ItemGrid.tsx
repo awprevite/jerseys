@@ -2,27 +2,9 @@
 
 import { useState } from 'react';
 import Item from './Item';
+import { mockItems, ItemData } from '../lib/mockItems';
 
-interface ItemData {
-  size: 'small' | 'large';
-  name: string;
-  number: number;
-  team: string;
-}
-
-const mockItems: ItemData[] = [
-  {size: 'small', name: 'Connor McDavid', number: 97, team: 'Edmonton Oilers'},
-  {size: 'small', name: 'Auston Matthews', number: 34, team: 'Toronto Maple Leafs'},
-  {size: 'small', name: 'Sidney Crosby', number: 87, team: 'Pittsburgh Penguins'},
-  {size: 'small', name: 'Alex Ovechkin', number: 8, team: 'Washington Capitals'},
-  {size: 'small', name: 'Nathan MacKinnon', number: 29, team: 'Colorado Avalanche'},  
-  {size: 'small', name: 'Leon Draisaitl', number: 29, team: 'Edmonton Oilers'},
-  {size: 'small', name: 'Patrick Kane', number: 88, team: 'Chicago Blackhawks'},
-  {size: 'small', name: 'Steven Stamkos', number: 91, team: 'Tampa Bay Lightning'},
-  {size: 'small', name: 'Brad Marchand', number: 63, team: 'Boston Bruins'},
-];
-
-export default function ItemContainer() {
+export default function ItemContainer({ items }: { items: ItemData[] }) {
 
   const [selectedItem, setSelectedItem] = useState<ItemData | null>(null);
 
@@ -34,22 +16,29 @@ export default function ItemContainer() {
           name={selectedItem.name}
           number={selectedItem.number}
           team={selectedItem.team}
+          brand={selectedItem.brand}
+          image={selectedItem.image}
           selected={true}
           onClose={() => setSelectedItem(null)}
         />
       ) : (
-        <div className='item-grid'>
-          {mockItems.map((item, index) => (
-            <Item
-              key={index}
-              size={item.size}
-              name={item.name}
-              number={item.number}
-              team={item.team}
-              selected={false}
-              onSelect={() => setSelectedItem(item)}
-            />
-          ))}
+        <div className='item-grid-container'>
+          <h1>{`${items.length} results`}</h1>
+          <div className='item-grid'>
+            {items.map((item, index) => (
+              <Item
+                key={index}
+                size={item.size}
+                name={item.name}
+                number={item.number}
+                team={item.team}
+                brand={item.brand}
+                image={item.image}
+                selected={false}
+                onSelect={() => setSelectedItem(item)}
+              />
+            ))}
+          </div>
         </div>
     )}
   </>

@@ -4,7 +4,8 @@ interface SearchBarProps {
   onSearch: (query: string) => void;
 }
 
-export default function SearchBar({ onSearch }: SearchBarProps) {
+function SearchBar({ onSearch }: SearchBarProps) {
+  
   return (
     <input className='search-bar'
       type='text'
@@ -17,3 +18,17 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     />
   );
 }
+
+interface SearchItemsProps {
+  items: any[];
+  query: string;
+}
+
+function searchItems({ items, query }: SearchItemsProps) {
+  if (!query) return items;
+  return items.filter(item => 
+    item.name.toLowerCase().includes(query.toLowerCase()) ||
+    item.team.toLowerCase().includes(query.toLowerCase()));
+}
+
+export { SearchBar, searchItems };
