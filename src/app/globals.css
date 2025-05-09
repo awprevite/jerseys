@@ -63,6 +63,10 @@
   max-width: 30rem;
 }
 
+.selected-item-container {
+  max-width: 40rem;
+  max-height: 40rem;
+}
 .item {
   display: flex;
   flex-direction: column;
@@ -71,13 +75,6 @@
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   cursor: pointer;
-}
-.small {
-  width: 50%;
-}
-.large {
-  width: 80%;
-  cursor: default;
 }
 
 .item-grid-container {
@@ -166,4 +163,10 @@
   gap: 1rem;
   border-radius: 0;
   border-right: 0.2rem solid var(--foreground);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }

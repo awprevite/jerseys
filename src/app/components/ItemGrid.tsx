@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Item from './Item';
-import { mockItems, ItemData } from '../lib/mockItems';
+import { ItemData } from '../lib/jerseys';
 
 export default function ItemContainer({ items }: { items: ItemData[] }) {
 
@@ -11,16 +11,23 @@ export default function ItemContainer({ items }: { items: ItemData[] }) {
   return (
     <>
       {selectedItem ? (
-        <Item
-          size={selectedItem.size}
-          name={selectedItem.name}
-          number={selectedItem.number}
-          team={selectedItem.team}
-          brand={selectedItem.brand}
-          image={selectedItem.image}
-          selected={true}
-          onClose={() => setSelectedItem(null)}
-        />
+        <div className='selected-item-container'>
+          <Item
+            firstName={selectedItem.firstName}
+            lastName={selectedItem.lastName}
+            number={selectedItem.number}
+            team={selectedItem.team}
+            brand={selectedItem.brand}
+            size={selectedItem.size}
+            frontImageUrl={selectedItem.frontImageUrl}
+            backImageUrl={selectedItem.backImageUrl}
+            forSale={selectedItem.forSale}
+            price={selectedItem.price}
+            sold={selectedItem.sold}
+            selected={true}
+            onClose={() => setSelectedItem(null)}
+          />
+        </div>
       ) : (
         <div className='item-grid-container'>
           <h1>{`${items.length} results`}</h1>
@@ -28,12 +35,17 @@ export default function ItemContainer({ items }: { items: ItemData[] }) {
             {items.map((item, index) => (
               <Item
                 key={index}
-                size={item.size}
-                name={item.name}
+                firstName={item.firstName}
+                lastName={item.lastName}
                 number={item.number}
                 team={item.team}
                 brand={item.brand}
-                image={item.image}
+                size={item.size}
+                frontImageUrl={item.frontImageUrl}
+                backImageUrl={item.backImageUrl}
+                forSale={item.forSale}
+                price={item.price}
+                sold={item.sold}
                 selected={false}
                 onSelect={() => setSelectedItem(item)}
               />

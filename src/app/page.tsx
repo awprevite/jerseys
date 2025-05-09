@@ -6,17 +6,17 @@ import { SearchBar, searchItems } from './components/SearchBar';
 import ItemGrid from './components/ItemGrid';
 import { Sort, sortItems } from './components/Sort';
 import { Filter, filterItems, setFilterItems } from './components/Filter';
-import { mockItems } from './lib/mockItems';
+import { useJerseys } from './lib/jerseys';
 
 export default function Home() {
 
   const [query, setQuery] = useState('');
-  const [sortBy, setSortBy] = useState('Name');
+  const [sortBy, setSortBy] = useState('');
   const [filterBy, setFilterBy] = useState<{ [key: string]: string[] }>({
     'size': ['all'],
     'brand': ['all']
   });
-  const [allItems, setAllItems] = useState(mockItems);
+  const allItems = useJerseys();
 
   const searchedItems = searchItems({ items: allItems, query })
   const filteredItems = filterItems({ items: searchedItems, filterBy })
@@ -36,7 +36,7 @@ export default function Home() {
           />
           <Filter
             label='Filter'
-            options={['Adidas', 'Reebok', 'Fanatics', '50', '52']}
+            options={['Adidas', 'Reebok', 'Fanatics', 'Nike', 'Troy', '48', '50', '52', 'S', 'M', 'L', 'XL']}
             onSelect={(option) => setFilterBy(setFilterItems({ newFilter: option, filterBy }))}
           />
         </div>
