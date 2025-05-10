@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 interface ItemData {
+  id: string;
   firstName: string;
   lastName: string;
   number: number;
@@ -31,27 +32,16 @@ function toCamelCase(jersey: any) {
   };
 }
 
-function useJerseys(){
-  const [jerseys, setJerseys] = useState<ItemData[]>([]);
-
-  useEffect(() => {
-    const fetchJerseys = async () => {
-      try {
-        const response = await fetch('/api');
-        const raw = await response.json();
-        const data = raw.map((jersey: any) => toCamelCase(jersey));
-        setJerseys(data);
-        console.log('Fetched jerseys:', data);
-      } catch (error) {
-        console.error('Error fetching jerseys:', error);
-      } 
-    }
-
-    fetchJerseys();
-  }, []);
-
-  return jerseys;
+async function getJerseys(): Promise<ItemData[]> {
+  try {
+    const response = await fetch('/api');
+    const raw = await response.json();
+    return raw.map((jersey: any) => toCamelCase(jersey));
+  } catch (error) {
+    console.error('Error fetching jerseys:', error);
+    return [];
+  }
 }
 
-export { useJerseys }
+export { getJerseys }
 export type { ItemData };

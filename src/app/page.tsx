@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './globals.css';
 import { SearchBar, searchItems } from './components/SearchBar';
 import ItemGrid from './components/ItemGrid';
 import { Sort, sortItems } from './components/Sort';
 import { Filter, filterItems, setFilterItems } from './components/Filter';
-import { useJerseys } from './lib/jerseys';
+import { ItemData, getJerseys } from './lib/jerseys';
 
 export default function Home() {
 
@@ -16,7 +16,15 @@ export default function Home() {
     'size': ['all'],
     'brand': ['all']
   });
-  const allItems = useJerseys();
+  const [allItems, setAllItems] = useState<ItemData[]>([]);
+  const fetchItems = async () => {
+    const items = await getJerseys();
+    setAllItems(items);
+  }
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
 
   const searchedItems = searchItems({ items: allItems, query })
   const filteredItems = filterItems({ items: searchedItems, filterBy })
