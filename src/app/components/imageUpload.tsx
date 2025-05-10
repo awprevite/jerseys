@@ -36,6 +36,7 @@ export default function ImageUpload({ side, onUpload }: ImageUploadProps) {
       });
 
       const result = await response.json();
+      console.log('Upload result:', result);
       onUpload(result.url);
     } catch (error) {
       console.error('Error uploading image:', error);

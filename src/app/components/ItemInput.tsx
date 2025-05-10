@@ -19,14 +19,6 @@ export default function ItemInput({ fields }: ItemInputProps) {
     }));
   };
 
-  const handleCheckboxChange = (field: string, checked: string) => {
-    setInputValues((prevValues) => ({
-      ...prevValues,
-      [field]: checked,
-    }));
-  };
-
-
   const handleSubmit = async () => {
     if (!frontImageUrl || !backImageUrl) {
       alert('Please upload both front and back images.');
@@ -34,7 +26,6 @@ export default function ItemInput({ fields }: ItemInputProps) {
     }
 
     const requiredFields = ['firstName', 'lastName', 'number', 'team', 'brand', 'size', 'forSale', 'price', 'sold'];
-
 
     for (const field of requiredFields) {
       if (!inputValues[field] || inputValues[field].trim() === '') {
@@ -76,25 +67,17 @@ export default function ItemInput({ fields }: ItemInputProps) {
         {fields.map((field: string, index: number) => (
           <div key={index}>
             <label>{field}</label><br />
-            {field === 'forSale' || field === 'sold' ? (
-              <input
-                type="checkbox"
-                checked={inputValues[field] === 'true'}
-                onChange={(e) => handleCheckboxChange(field, e.target.checked ? 'true' : 'false')}
-              />
-            ) : (
-              <input
-                type="text"
-                placeholder={field}
-                value={inputValues[field] || ''}
-                onChange={(e) => handleInputChange(field, e.target.value)}
-              />
-            )}
+            <input
+              type="text"
+              placeholder={field}
+              value={inputValues[field] || ''}
+              onChange={(e) => handleInputChange(field, e.target.value)}
+            />
           </div>
         ))}
       </div>
-      <ImageUpload side = 'front' onUpload={(setFrontImageUrl)}/>
-      <ImageUpload side = 'back' onUpload={(setBackImageUrl)}/>
+      <ImageUpload side='front' onUpload={(setFrontImageUrl)}/>
+      <ImageUpload side='back' onUpload={(setBackImageUrl)}/>
       <Button type='primary' text='Submit' onClick={() => handleSubmit()} />
     </div>
   );

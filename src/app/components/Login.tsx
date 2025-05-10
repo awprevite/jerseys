@@ -16,17 +16,34 @@ export default function Login({ onClose, onLogin }: LoginProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    alert(`Logging in with ${username} / ${password}`);
-    // Insert auth logic here
-    onLogin();
-    onClose();
-    route.push('/admin');
-  };
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      const result = await response.json();
+  
+      if (result.success) {
+        alert('Login successful');
+        onLogin();
+        onClose();
+        route.push('/admin');
+      } else {
+        alert('Invalid username or password');
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
+  };  
 
   return (
     <div className='login-overlay' onClick={() => onClose()}>
-      <div className='login'>
+      <div className='login' onClick={(e) => e.stopPropagation()}>
         <input
           type='text'
           placeholder='Username'
