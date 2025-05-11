@@ -1,4 +1,4 @@
-import supabase from './db';
+import supabase from '../db';
 
 export async function GET(request: Request): Promise<Response> {
   const { data, error } = await supabase

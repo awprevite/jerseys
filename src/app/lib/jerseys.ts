@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 interface ItemData {
   id: string;
   firstName: string;
@@ -34,7 +33,7 @@ function toCamelCase(jersey: any) {
 
 async function getJerseys(): Promise<ItemData[]> {
   try {
-    const response = await fetch('/api');
+    const response = await fetch('/api/getItems');
     const raw = await response.json();
     return raw.map((jersey: any) => toCamelCase(jersey));
   } catch (error) {

@@ -3,14 +3,14 @@
 import React from 'react';
 
 interface ButtonProps {
-  type: 'primary' | 'close';
+  className: string;
   text: React.ReactNode; // string or JSX
   onClick: (() => void) | React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function Button({ type, text, onClick }: ButtonProps) {
+export default function Button({ className, text, onClick }: ButtonProps) {
   return (
-    <button onClick={onClick} className={`button ${type}`}>
+    <button onClick={onClick} className={className}>
       {text}
     </button>
   );

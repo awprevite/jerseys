@@ -22,21 +22,17 @@ interface ItemProps {
 
 export default function Item({ firstName, lastName, number, team, brand, size, frontImageUrl, backImageUrl, forSale, price, sold, selected, onSelect, onClose }: ItemProps) {
 
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     setImage(frontImageUrl);
   }, [frontImageUrl])
 
   return (
-    <div className='item'
-      onClick={() => {
-        onSelect?.();
-      }}
-    >
+    <div className='item' onClick={() => { onSelect?.() }}>
       {selected && (
         <Button
-          type='close'
+          className='close'
           text='X'
           onClick={(e) => {
             e.stopPropagation();
@@ -44,19 +40,17 @@ export default function Item({ firstName, lastName, number, team, brand, size, f
           }}
         />
       )}
-      {image ? (
+      <div className='image-wrapper'>
         <img src={image} alt="Item Image" />
-      ) : (
-        <p>No images to display</p>
-      )}
-      <Button
-        type='primary'
-        text={image === frontImageUrl ? '>' : '<'}
-        onClick={(e) => {
-          e.stopPropagation();
-          setImage(image === frontImageUrl ? backImageUrl : frontImageUrl);
-        }}
-      />
+        <Button
+          className='toggle-button'
+          text='Flip'
+          onClick={(e) => {
+            e.stopPropagation();
+            setImage(image === frontImageUrl ? backImageUrl : frontImageUrl);
+          }}
+        />
+      </div>
       <h2>{`${firstName} ${lastName}`}</h2>
       <p>Number: {number}</p>
       <p>Team: {team}</p>

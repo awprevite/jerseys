@@ -2,18 +2,11 @@
   --background: white;
   --foreground: black;
   --neutral: gray;
-  --font-family: 'Arial', sans-serif;
+  --font-family: 'Helvetica Neue', sans-serif;
   --font-size: 16px;
   --border-radius: 5px;
   --red: red;
   --blue: blue;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: black;
-    --foreground: white;
-  }
 }
 
 * {
@@ -37,6 +30,19 @@
 }
 .close:hover {
   background-color: var(--red);
+}
+
+.toggle-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.875rem;
 }
 
 .navbar {
@@ -75,6 +81,15 @@
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   cursor: pointer;
+}
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.image-wrapper img {
+  width: 100%;
+  display: block;
 }
 
 .item-grid-container {
