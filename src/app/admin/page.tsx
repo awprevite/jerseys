@@ -34,6 +34,8 @@ export default function Admin() {
 
   return (
     <div>
+      <Button className='input-button' text={showInput ? 'Hide Input' : 'Show Input'} onClick={() => setShowInput(!showInput)}/>
+      {showInput && <ItemInput fields={fields}/>}
       {allItems.map((item, index) => (
         <AdminItem
           key={index}
@@ -49,12 +51,9 @@ export default function Admin() {
           forSale={item.forSale}
           price={item.price}
           sold={item.sold}
-          selected={false}
           onDelete={fetchItems}
         />
       ))}
-      <Button className='input-button' text={showInput ? 'Hide Input' : 'Show Input'} onClick={() => setShowInput(!showInput)}/>
-      {showInput && <ItemInput fields={fields}/>}
     </div>
   );
 }

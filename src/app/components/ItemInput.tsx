@@ -75,10 +75,10 @@ export default function ItemInput({ fields }: ItemInputProps) {
             />
           </div>
         ))}
+        <ImageUpload side='front' onUpload={(setFrontImageUrl)}/>
+        <ImageUpload side='back' onUpload={(setBackImageUrl)}/>
+      <Button className='info-button' text='Submit' onClick={() => handleSubmit()} />
       </div>
-      <ImageUpload side='front' onUpload={(setFrontImageUrl)}/>
-      <ImageUpload side='back' onUpload={(setBackImageUrl)}/>
-      <Button type='primary' text='Submit' onClick={() => handleSubmit()} />
     </div>
   );
 }

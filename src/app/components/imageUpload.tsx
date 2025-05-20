@@ -49,7 +49,7 @@ export default function ImageUpload({ side, onUpload }: ImageUploadProps) {
       {previewUrl && <img src={previewUrl} alt="Preview" style={{ maxWidth: '200px', marginTop: '10px' }} />}
       <br />
       <button disabled={!file} onClick={handleUpload}>Upload</button>
-      <Button type='primary' text='Remove' onClick={() => {
+      <Button className='delete-button' text='Remove' onClick={() => {
         setPreviewUrl(null);
         setFile(null);
       }}/>

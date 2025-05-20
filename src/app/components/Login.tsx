@@ -58,8 +58,8 @@ export default function Login({ onClose, onLogin }: LoginProps) {
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
         />
-        <Button type='primary' text='Login' onClick={() => {handleLogin()}}/>
-        <Button type='close' text='back' onClick={() => {onClose()}}/>
+        <Button className='info-button' text='Login' onClick={() => {handleLogin()}}/>
+        <Button className='delete-button' text='back' onClick={() => {onClose()}}/>
       </div>
     </div>
   );

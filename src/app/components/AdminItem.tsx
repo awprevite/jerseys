@@ -16,11 +16,11 @@ interface AdminItemProps {
   forSale: boolean;
   price: number;
   sold: boolean;
-  selected: boolean;
   onDelete: () => void;
 }
 
 export default function AdminItem({id, firstName, lastName, number, team, brand, size, frontImageUrl, backImageUrl, forSale, price, sold, onDelete}: AdminItemProps) {
+  
   const [image, setImage] = useState<string | null>(null);
   const [showDetails, setShowDetails] = useState(false);
 
@@ -36,43 +36,40 @@ export default function AdminItem({id, firstName, lastName, number, team, brand,
   }
 
   return (
-    <div className='item'>
-      <h2>{`${firstName} ${lastName}`}</h2>
-      <p>Number: {number}</p>
-      <p>Team: {team}</p>
-
-      {showDetails && (
-        <>
-          {image ? (
+    <div className='admin-item'>
+      <div className='admin-item-header'>
+        <h2>{`${firstName} ${lastName} ${number} ${team}`}</h2>
+        <Button
+          className='info-button'
+          text={showDetails ? 'Hide Info' : 'More Info'}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowDetails(!showDetails);
+          }}
+        />
+        <Button className='delete-button' text='Delete' onClick={(e) => {deleteItem(id)}} />
+      </div>
+      {showDetails && image && (
+        <div className='expanded-admin-item'>
+          <div className='image-wrapper'>
             <img src={image} alt="Item Image" />
-          ) : (
-            <p>No images to display</p>
-          )}
-          <Button
-            type='primary'
-            text={image === frontImageUrl ? '>' : '<'}
-            onClick={(e) => {
-              e.stopPropagation();
-              setImage(image === frontImageUrl ? backImageUrl : frontImageUrl);
-            }}
-          />
+            <Button
+              className='toggle-button'
+              text='Flip'
+              onClick={(e) => {
+                e.stopPropagation();
+                setImage(image === frontImageUrl ? backImageUrl : frontImageUrl);
+              }}
+            />
+          </div>
+          
           <p>Size: {size}</p>
           <p>Brand: {brand}</p>
           <p>For Sale: {forSale ? 'Yes' : 'No'}</p>
           <p>Sold: {sold ? 'Yes' : 'No'}</p>
           <p>Price: ${price}</p>
-        </>
+        </div>
       )}
-
-      <Button
-        type='primary'
-        text={showDetails ? 'Hide Info' : 'More Info'}
-        onClick={(e) => {
-          e.stopPropagation();
-          setShowDetails(!showDetails);
-        }}
-      />
-      <Button type='primary' text='Delete' onClick={(e) => {deleteItem(id)}} />
     </div>
   );
 }
