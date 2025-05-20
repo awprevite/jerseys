@@ -1,21 +1,31 @@
 'use client';
 
+import { useState } from 'react';
+import Button from './Button';
+
 interface SearchBarProps {
   onSearch: (query: string) => void;
 }
 
 function SearchBar({ onSearch }: SearchBarProps) {
+  const [query, setQuery] = useState('');
   
   return (
-    <input className='search-bar'
-      type='text'
-      placeholder='Search for jerseys...'
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-          onSearch((e.target as HTMLInputElement).value);
-        }
-      }}
-    />
+    <>
+      <input className='search-bar'
+        type='text'
+        placeholder='Search for jerseys...'
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            onSearch(query);
+          }
+        }}
+      />
+      <Button className='info-button' text='Go' onClick={() => onSearch(query)} />
+      <Button className='delete-button' text='Reset'onClick={() => { setQuery(''); onSearch(''); }} />
+    </>
   );
 }
 
@@ -27,7 +37,8 @@ interface SearchItemsProps {
 function searchItems({ items, query }: SearchItemsProps) {
   if (!query) return items;
   return items.filter(item => 
-    item.name.toLowerCase().includes(query.toLowerCase()) ||
+    item.firstName.toLowerCase().includes(query.toLowerCase()) ||
+    item.lastName.toLowerCase().includes(query.toLowerCase()) ||
     item.team.toLowerCase().includes(query.toLowerCase()));
 }
 

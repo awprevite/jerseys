@@ -53,8 +53,8 @@ export default function Item({ firstName, lastName, number, team, brand, size, f
       </div>
       {selected ? (
         <div className='item-deatails'>
-          <h2>{`${firstName} ${lastName}`}</h2>
-          <p>Number: {number}</p>
+          {firstName != 'Blank' && <h2>{`${firstName} ${lastName}`}</h2>}
+          {number > -1 && <p>Number: {number}</p>}
           <p>Team: {team}</p>
           <p>Brand: {brand}</p>
           <p>Size: {size}</p>
@@ -64,8 +64,8 @@ export default function Item({ firstName, lastName, number, team, brand, size, f
         </div>
       ) : (
         <div className='item-deatails'>
-          <h2>{`${firstName} ${lastName}`}</h2>
-          <p>Number: {number}</p>
+          {firstName != 'Blank' && <h2>{`${firstName} ${lastName}`}</h2>}
+          {number > -1 && <p>Number: {number}</p>}
           <p>Team: {team}</p>
           <p>Brand: {brand}</p>
           <p>Size: {size}</p>

@@ -44,7 +44,7 @@ export default function Home() {
           />
           <Filter
             label='Filter'
-            options={['Adidas', 'Reebok', 'Fanatics', 'Nike', 'Troy', '48', '50', '52', 'S', 'M', 'L', 'XL']}
+            options={['Adidas', 'Reebok', 'Fanatics', 'Nike', 'Troy', 'Champro', '48', '50', '52', 'S', 'M', 'L', 'XL']}
             onSelect={(option) => setFilterBy(setFilterItems({ newFilter: option, filterBy }))}
           />
         </div>

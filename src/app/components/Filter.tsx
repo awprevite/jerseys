@@ -62,11 +62,11 @@ interface SetFilterItemsProps {
 function setFilterItems({ newFilter, filterBy }: SetFilterItemsProps) {
 
   const updated = { ...filterBy };
-  const allFilters = ['Adidas', 'Reebok', 'Fanatics', 'Nike', 'Troy', '48', '50', '52', 'S', 'M', 'L', 'XL'];
+  const allFilters = ['Adidas', 'Reebok', 'Fanatics', 'Nike', 'Troy', 'Champro', '48', '50', '52', 'S', 'M', 'L', 'XL'];
   let filterKey = '';
   if (['48', '50', '52', 'S', 'M', 'L', 'XL'].includes(newFilter)) {
     filterKey = 'size';
-  } else if (['Adidas', 'Reebok', 'Fanatics', 'Nike', 'Troy'].includes(newFilter)) { 
+  } else if (['Adidas', 'Reebok', 'Fanatics', 'Nike', 'Troy', 'Champro'].includes(newFilter)) { 
     filterKey = 'brand';
   }
 

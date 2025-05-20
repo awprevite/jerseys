@@ -40,7 +40,11 @@ interface SortItemsProps {
 
 function sortItems({ items, sortBy}: SortItemsProps) {
   if (sortBy === 'Name') {
-    return [...items].sort((a, b) => a.lastName.localeCompare(b.name));
+    return [...items].sort((a, b) => {
+      if (a.lastName === 'Blank' && b.lastName !== 'Blank') return -1;
+      if (b.lastName === 'Blank' && a.lastName !== 'Blank') return 1;
+      return a.lastName.localeCompare(b.lastName);
+    });
   }
   if (sortBy === 'Number') {
     return [...items].sort((a, b) => a.number - b.number);
