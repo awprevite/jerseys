@@ -30,18 +30,18 @@ export default function Item({ firstName, lastName, number, team, brand, size, f
 
   return (
     <div className='item' onClick={() => { onSelect?.() }}>
-      {selected && (
-        <Button
-          className='close'
-          text='X'
-          onClick={(e) => {
-            e.stopPropagation();
-            onClose?.();
-          }}
-        />
-      )}
       <div className='image-wrapper'>
         <img src={image} alt="Item Image" />
+        {selected && (
+          <Button
+            className='image-close-button'
+            text='X'
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose?.();
+            }}
+          />
+        )}
         <Button
           className='toggle-button'
           text='Flip'
@@ -51,12 +51,26 @@ export default function Item({ firstName, lastName, number, team, brand, size, f
           }}
         />
       </div>
-      <h2>{`${firstName} ${lastName}`}</h2>
-      <p>Number: {number}</p>
-      <p>Team: {team}</p>
-      <p>Size: {size}</p>
-      <p>Brand: {brand}</p>
+      {selected ? (
+        <div className='item-deatails'>
+          <h2>{`${firstName} ${lastName}`}</h2>
+          <p>Number: {number}</p>
+          <p>Team: {team}</p>
+          <p>Brand: {brand}</p>
+          <p>Size: {size}</p>
+          <p>For Sale: {forSale ? 'Yes' : 'No'}</p>
+          <p>Price: {forSale ? `$${price}` : 'N/A'}</p>
+          <p>Sold: {sold ? 'Yes' : 'No'}</p>
+        </div>
+      ) : (
+        <div className='item-deatails'>
+          <h2>{`${firstName} ${lastName}`}</h2>
+          <p>Number: {number}</p>
+          <p>Team: {team}</p>
+          <p>Brand: {brand}</p>
+          <p>Size: {size}</p>
+        </div>
+      )}
     </div>
-  
   );
 }

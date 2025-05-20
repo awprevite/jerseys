@@ -53,7 +53,7 @@ export default function Admin() {
           onDelete={fetchItems}
         />
       ))}
-      <Button type='primary' text={showInput ? 'Hide Input' : 'Show Input'} onClick={() => setShowInput(!showInput)}/>
+      <Button className='input-button' text={showInput ? 'Hide Input' : 'Show Input'} onClick={() => setShowInput(!showInput)}/>
       {showInput && <ItemInput fields={fields}/>}
     </div>
   );

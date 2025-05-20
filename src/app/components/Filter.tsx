@@ -27,7 +27,7 @@ function Filter({ label, options, onSelect }: FilterProps) {
       <div className='sort-menu'>
         {options.map((option) => (
           <div className='sort-item' key={option}>
-            <Button type='primary' text={selectedOptions.includes(option) ? <SquareCheck /> : <Square/>} onClick={() => toggleOption(option)}/>
+            <Button className='checkbox' text={selectedOptions.includes(option) ? <SquareCheck /> : <Square/>} onClick={() => toggleOption(option)}/>
             <label className='sort-label'>{option}</label>
           </div>
         ))}

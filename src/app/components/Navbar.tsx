@@ -12,7 +12,7 @@ export default function Navbar( {loggedIn, onLoginClick }: NavbarProps) {
   return (
     <nav className="navbar">
       <div className='navbar-title'>Jersey Collection</div>
-      <Button type='primary' text={loggedIn ? 'Logout' : 'login'} onClick={() => onLoginClick()} />
+      <Button className='login-button' text={loggedIn ? 'Logout' : 'login'} onClick={() => onLoginClick()} />
     </nav>
   );
 }

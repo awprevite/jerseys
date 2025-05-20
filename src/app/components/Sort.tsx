@@ -24,7 +24,7 @@ function Sort({ label, options, onSelect }: SortProps) {
       <div className='sort-menu'>
         {options.map((option) => (
           <div className='sort-item' key={option}> 
-            <Button type='primary' text={selectedOption === option ? <SquareCheck/> : <Square />} onClick={() => handleSelect(option)}/>
+            <Button className='checkbox' text={selectedOption === option ? <SquareCheck/> : <Square />} onClick={() => handleSelect(option)}/>
             <label className='sort-label'>{option}</label>
           </div>
         ))}
