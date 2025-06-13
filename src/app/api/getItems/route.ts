@@ -1,6 +1,6 @@
 import supabase from '../db';
 
-export async function GET(request: Request): Promise<Response> {
+export async function GET(_request: Request): Promise<Response> {
   const { data, error } = await supabase
     .from('jerseys')
     .select('*');

@@ -39,7 +39,7 @@ export default function Home() {
         <div className='sidebar'>
           <Sort
             label='Sort By'
-            options={['Name', 'Number', 'Size', 'Brand']}
+            options={['Name', 'Number', 'Team', 'Brand', 'Size']}
             onSelect={(option) => setSortBy(option)}
           />
           <Filter

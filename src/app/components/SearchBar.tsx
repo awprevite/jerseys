@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Button from './Button';
+import { ItemData } from '../lib/jerseys';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -30,7 +31,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
 }
 
 interface SearchItemsProps {
-  items: any[];
+  items: ItemData[];
   query: string;
 }
 
@@ -39,6 +40,7 @@ function searchItems({ items, query }: SearchItemsProps) {
   return items.filter(item => 
     item.firstName.toLowerCase().includes(query.toLowerCase()) ||
     item.lastName.toLowerCase().includes(query.toLowerCase()) ||
+    item.number.toString().includes(query) ||
     item.team.toLowerCase().includes(query.toLowerCase()));
 }
 

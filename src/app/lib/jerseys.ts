@@ -13,7 +13,23 @@ interface ItemData {
   sold: boolean;
 }
 
-function toCamelCase(jersey: any) {
+interface RawItemData {
+  id: string;
+  first_name: string;
+  last_name: string;
+  number: number;
+  team: string;
+  brand: string;
+  size: string;
+  front_image_url: string;
+  back_image_url: string;
+  for_sale: boolean;
+  price: number;
+  sold: boolean;
+  created_at: string;
+}
+
+function toCamelCase(jersey: RawItemData) {
   return {
     id: jersey.id,
     firstName: jersey.first_name,
@@ -35,7 +51,7 @@ async function getJerseys(): Promise<ItemData[]> {
   try {
     const response = await fetch('/api/getItems');
     const raw = await response.json();
-    return raw.map((jersey: any) => toCamelCase(jersey));
+    return raw.map((jersey: RawItemData) => toCamelCase(jersey));
   } catch (error) {
     console.error('Error fetching jerseys:', error);
     return [];

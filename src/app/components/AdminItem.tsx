@@ -47,7 +47,7 @@ export default function AdminItem({id, firstName, lastName, number, team, brand,
             setShowDetails(!showDetails);
           }}
         />
-        <Button className='delete-button' text='Delete' onClick={(e) => {deleteItem(id)}} />
+        <Button className='delete-button' text='Delete' onClick={(_e) => {deleteItem(id)}} />
       </div>
       {showDetails && image && (
         <div className='expanded-admin-item'>

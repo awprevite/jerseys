@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Button from './Button';
 import { Square, SquareCheck } from 'lucide-react';
+import { ItemData } from '../lib/jerseys';
 
 interface FilterProps {
   label: string;
@@ -37,7 +38,7 @@ function Filter({ label, options, onSelect }: FilterProps) {
 }
 
 interface FilterItemsProps {
-  items: any[];
+  items: ItemData[];
   filterBy: {
     [key: string]: string[];
   };
@@ -47,7 +48,13 @@ function filterItems({ items, filterBy }: FilterItemsProps) {
   return items.filter((item) => {
     return Object.entries(filterBy).every(([key, values]) => {
       if (values.includes('all') || values.length === 0) return true;
-      return values.includes(item[key]);
+      if (key in item) {
+        const itemProperty = key as keyof ItemData;
+        const itemValue = item[itemProperty];
+        const itemValueAsString = String(itemValue);
+        return values.includes(itemValueAsString);
+      }
+      return true;
     });
   });
 }

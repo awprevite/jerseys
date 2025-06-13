@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Button from './Button';
 import { Square, SquareCheck } from 'lucide-react';
+import { ItemData } from '../lib/jerseys';
 
 interface SortProps {
   label: string;
@@ -14,7 +15,11 @@ function Sort({ label, options, onSelect }: SortProps) {
   
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const handleSelect = (option: string) => {
-    selectedOption === option ? setSelectedOption(null) : setSelectedOption(option);
+    if (selectedOption === option){
+      setSelectedOption(null)
+    } else {
+      setSelectedOption(option);
+    }
     onSelect(option);
   };
 
@@ -34,7 +39,7 @@ function Sort({ label, options, onSelect }: SortProps) {
 }
 
 interface SortItemsProps {
-  items: any[];
+  items: ItemData[];
   sortBy: string;
 }
 
@@ -49,9 +54,6 @@ function sortItems({ items, sortBy}: SortItemsProps) {
   if (sortBy === 'Number') {
     return [...items].sort((a, b) => a.number - b.number);
   }
-  if (sortBy === 'Year') {
-    return [...items].sort((a, b) => a.year - b.year);
-  }
   if (sortBy === 'Price') {
     return [...items].sort((a, b) => a.price - b.price);
   }
@@ -60,6 +62,9 @@ function sortItems({ items, sortBy}: SortItemsProps) {
   }
   if (sortBy === 'Brand') {
     return [...items].sort((a, b) => a.brand.localeCompare(b.brand));
+  }
+  if (sortBy === 'Team') {
+    return [...items].sort((a, b) => a.team.localeCompare(b.team));
   }
   return items;
 }
