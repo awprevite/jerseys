@@ -1,8 +1,9 @@
 # Dynamic Jersey Collection Website
 
-Administrators have the ability to add and delete jerseys.  
-Users can view the entire collection and search, sort and filter it.
+Built with Javascript, React, and Next.js, this is a personal website that displays my hockey jersey collection. With an e-commerce style, users can view the collection in its entirety, or search, sort, and filter. Administrators have the ability to manage the collection by adding and deleting jerseys in a protected page. The site was designed for desktop, but still performs well on mobile devices.
 
-This is a Next.js project deployed with Vercel that uses Supabase for cloud storage of a database and images accessible through Next APIs.
+Supabase was used for the back-end and its native Postgre SQL database and cloud storage were used for storing information and images.
 
-View the site [here]()
+Next I would like to include Supabases authentication to truly protect the administrative page.
+
+View the site [here](https://jerseys-ten.vercel.app).
