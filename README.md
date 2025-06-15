@@ -7,3 +7,11 @@ Supabase was used for the back-end and its native Postgre SQL database and cloud
 Next I would like to include Supabases authentication to truly protect the administrative page.
 
 View the site [here](https://jerseys-ten.vercel.app).
+
+## Home Page View
+
+![](public/home.png)
+
+## Admin Page View
+
+![](public/admin.png)
