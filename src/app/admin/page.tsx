@@ -12,7 +12,7 @@ export default function Admin() {
   const [allItems, setAllItems] = useState<ItemData[]>([]);
 
   const fetchItems = async () => {
-    const items = await getJerseys(); // Rename useJerseys to getJerseys if it’s not a real React hook
+    const items = await getJerseys();
     setAllItems(items);
   };
 
